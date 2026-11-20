@@ -1,3 +1,4 @@
+
 {% extends "base.html" %}
 
 {% block title %}Log In — FinWise Smart Personal Finance{% endblock %}
@@ -14,7 +15,8 @@
                 Sign in to manage your income, expenses, and personal budgets.
             </p>
         </div>
-          <form method="POST" action="{{ url_for('auth.login', next=next) }}" class="space-y-5">
+
+        <form method="POST" action="{{ url_for('auth.login', next=next) }}" class="space-y-5">
             <div class="space-y-1.5">
                 <label for="email" class="block text-xs font-semibold uppercase tracking-wider text-slate-700">
                     Email Address <span class="text-rose-500">*</span>
@@ -28,8 +30,7 @@
                         placeholder="you@example.com" 
                         required 
                         autocomplete="email"
-                        class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400
-                               transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
                 </div>
             </div>
 
@@ -39,6 +40,7 @@
                         Password <span class="text-rose-500">*</span>
                     </label>
                 </div>
+
                 <div class="relative">
                     <input 
                         type="password" 
@@ -47,8 +49,10 @@
                         placeholder="••••••••" 
                         required 
                         autocomplete="current-password"
-                        class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400
-                               transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                        class="w-full pr-16 px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white text-slate-900 placeholder-slate-400 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500">
+                    <button type="button" onclick="togglePassword('password', this)" class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-500 hover:text-emerald-700">
+                        Show
+                    </button>
                 </div>
             </div>
 
@@ -61,6 +65,7 @@
                 </svg>
             </button>
         </form>
+
         <div class="mt-8 pt-6 border-t border-slate-100 text-center space-y-3">
             <p class="text-xs text-slate-600">
                 Don't have an account yet? 
@@ -74,7 +79,15 @@
                 </a>
             </p>
         </div>
-
     </div>
 </div>
+
+<script>
+function togglePassword(id, button) {
+    const input = document.getElementById(id);
+    const isHidden = input.type === "password";
+    input.type = isHidden ? "text" : "password";
+    button.textContent = isHidden ? "Hide" : "Show";
+}
+</script>
 {% endblock %}
